@@ -13,7 +13,10 @@ export default function App() {
   const ComingSoon = () => (
     <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Card>
-        <Text category="h4">Something interesting in the works...</Text>
+        <Text category="h4">Something interesting coming...</Text>
+        <Text appearance="hint" style={{ marginTop: 4 }}>
+          tokenboard.xyz
+        </Text>
       </Card>
     </Layout>
   );
