@@ -1,63 +1,27 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider, Card, Layout, Text } from "@ui-kitten/components";
+import { RootNavigation } from "./src/RootNavigation";
 
-import { TokenGrid } from "./src/TokenGrid";
-import { Header } from "./src/Header";
-import { About } from "./src/About";
-
-const HEADER_HEIGHT = 70;
-
-const Stack = createNativeStackNavigator();
+// theme generated from https://colors.eva.design/
+import { default as theme } from "./theme.json";
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="home"
-          component={TokenGrid}
-          options={{ title: "Token Grid" }}
-        />
-        <Stack.Screen
-          name="about"
-          component={About}
-          options={{ title: "About" }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+  const isDev = false;
+
+  const ComingSoon = () => (
+    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Card>
+        <Text category="h4">Something interesting in the works...</Text>
+      </Card>
+    </Layout>
   );
 
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.main} contentContainerStyle={styles.content}>
-        <TokenGrid />
-      </ScrollView>
-      <Header style={styles.header} />
+    <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+      {isDev ? <RootNavigation /> : <ComingSoon />}
       <StatusBar style="auto" />
-    </View>
+    </ApplicationProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  header: {
-    position: "absolute",
-    height: HEADER_HEIGHT,
-    top: 0,
-    left: 0,
-    right: 0,
-  },
-  main: {
-    flex: 1,
-    backgroundColor: "#f2f2f2",
-  },
-  content: {
-    paddingTop: HEADER_HEIGHT,
-  },
-});

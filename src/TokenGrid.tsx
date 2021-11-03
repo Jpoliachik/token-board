@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   item: {
-    width: 200,
-    height: 200,
+    width: 320,
+    height: 320,
   },
 });
